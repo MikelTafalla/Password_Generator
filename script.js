@@ -1,14 +1,31 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//Assignment of Password characters to variables from the ASCII character codes table
+
+var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90);
+var LOWERCASE_CHAR_CODE = arrayFromLowtoHigh(97, 122);
+var NUMBER_CHAR_CODE = arrayFromLowtoHigh(48, 57);
+var SPECIAL_CHAR_CODE = arrayFromLowtoHigh(33, 47).concat(arrayFromLowtoHigh(58 ,64)).concat(arrayFromLowtoHigh(91, 96)).concat(arrayFromLowtoHigh(123, 126));
+
 
 // Write password to the #password input
+
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(Answer1positive, Answer2positive, Answer3positive, Answer4positive, Answer5positive);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+}
 
+//Write function to get characters from ASCII characters code table
+
+function arrayFromLowtoHigh(low, high) {
+  var array = []
+  for (var j = low; j <= high; j++) {
+    array.push(j)
+  }
+  return array
 }
 
 // Add event listener to generate button
@@ -44,6 +61,36 @@ for (var i = 0; i < question.length; i++) {
   var userAnswLower4 = userAnswer4.toLowerCase();
   var userAnswLower5 = userAnswer5.toLowerCase();
 
-
+  //Check answers to filter password criteria and assign a variable for positive answers and another for negatives
+  if (userAnswLower1 === "yes") {
+    var Answer1positive = userAnswLower1;
+  }
+  else {
+    var Answer1negative = userAnswLower1;
+  }
+  if (userAnswLower2 === "yes") {
+    var Answer2positive = userAnswLower2;
+  }
+  else {
+    var Answer2negative = userAnswLower2;
+  }
+  if (userAnswLower3 === "yes") {
+    var Answer3positive = userAnswLower3;
+  }
+  else {
+    var Answer3negative = userAnswLower3;
+  }
+  if (userAnswLower4 === "yes") {
+    var Answer4positive = userAnswLower4;
+  }
+  else {
+    var Answer4negative = userAnswLower4;
+  }
+  if (userAnswLower5 === "yes") {
+    var Answer5positive = userAnswLower5;
+  }
+  else {
+    var Answer5negative = userAnswLower5;
+  }
 
 }
