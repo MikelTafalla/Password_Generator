@@ -1,25 +1,17 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-//Assignment of Password characters to variables from the ASCII character codes table
 
-var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90);
-var LOWERCASE_CHAR_CODE = arrayFromLowtoHigh(97, 122);
-var NUMBER_CHAR_CODE = arrayFromLowtoHigh(48, 57);
-var SPECIAL_CHAR_CODE = arrayFromLowtoHigh(33, 47).concat(arrayFromLowtoHigh(58 ,64)).concat(arrayFromLowtoHigh(91, 96)).concat(arrayFromLowtoHigh(123, 126));
+//Variables to store the array from the ASCII chart.
+
+  var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90)
+  var LOWERCASE_CHAR_CODE = arrayFromLowtoHigh(97, 122)
+  var NUMBER_CHAR_CODE = arrayFromLowtoHigh(48, 57)
+  var SPECIAL_CHAR_CODE = arrayFromLowtoHigh(33, 47).concat(arrayFromLowtoHigh(58, 64)).concat(arrayFromLowtoHigh(91, 96)).concat(arrayFromLowtoHigh(123, 126))
 
 
-// Write password to the #password input
-
-function writePassword() {
-  var password = generatePassword(Answer1positive, Answer2positive, Answer3positive, Answer4positive, Answer5positive);
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
 
 //Write function to get characters from ASCII characters code table
-
 function arrayFromLowtoHigh(low, high) {
   var array = []
   for (var j = low; j <= high; j++) {
@@ -27,6 +19,18 @@ function arrayFromLowtoHigh(low, high) {
   }
   return array
 }
+
+// Write password to the #password input
+
+function writePassword() {
+  var password = generatePassword();
+
+  //Set up variables for our character codes
+
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -47,50 +51,50 @@ var question = [
 
 //Loop over every question object
 for (var i = 0; i < question.length; i++) {
-  //Display questions for user to answer and store their answer on userAnswer
-  var userAnswer1 = prompt(question[0].q);
-  var userAnswer2 = prompt(question[1].q);
-  var userAnswer3 = prompt(question[2].q);
-  var userAnswer4 = prompt(question[3].q);
-  var userAnswer5 = prompt(question[4].q);
+  //Display questions for user to answer and store their answer on the variables
+  var Uppercase = prompt(question[0].q);
+  var Lowercase = prompt(question[1].q);
+  var Numbers = prompt(question[2].q);
+  var Symbols = prompt(question[3].q);
+  var Charachter_Amount = prompt(question[4].q);
 
   //convert userAnswer to Lowercase
-  var userAnswLower1 = userAnswer1.toLowerCase();
-  var userAnswLower2 = userAnswer2.toLowerCase();
-  var userAnswLower3 = userAnswer3.toLowerCase();
-  var userAnswLower4 = userAnswer4.toLowerCase();
-  var userAnswLower5 = userAnswer5.toLowerCase();
+  var Uppercase_L = Uppercase.toLowerCase();
+  var Lowercase_L = Lowercase.toLowerCase();
+  var Numbers_L = Numbers.toLowerCase();
+  var Symbols_L = Symbols.toLowerCase();
+  
 
   //Check answers to filter password criteria and assign a variable for positive answers and another for negatives
-  if (userAnswLower1 === "yes") {
-    var Answer1positive = userAnswLower1;
+  if (Uppercase_L === "yes") {
+    var Uppercase_Array = UPPERCASE_CHAR_CODES;
   }
   else {
-    var Answer1negative = userAnswLower1;
+    null;
   }
-  if (userAnswLower2 === "yes") {
-    var Answer2positive = userAnswLower2;
-  }
-  else {
-    var Answer2negative = userAnswLower2;
-  }
-  if (userAnswLower3 === "yes") {
-    var Answer3positive = userAnswLower3;
+  if (Lowercase_L === "yes") {
+    var Lowercase_Array = LOWERCASE_CHAR_CODE;
   }
   else {
-    var Answer3negative = userAnswLower3;
+    null;
   }
-  if (userAnswLower4 === "yes") {
-    var Answer4positive = userAnswLower4;
-  }
-  else {
-    var Answer4negative = userAnswLower4;
-  }
-  if (userAnswLower5 === "yes") {
-    var Answer5positive = userAnswLower5;
+  if (Numbers_L === "yes") {
+    var Numbers_Arrays = NUMBER_CHAR_CODE;
   }
   else {
-    var Answer5negative = userAnswLower5;
+    null;
   }
-
+  if (Symbols_L === "yes") {
+    var Symbols_Array = SPECIAL_CHAR_CODE;
+  }
+  else {
+    null;
+  }
+  if (Charachter_Amount >= 8 && Charachter_Amount <= 128) {
+    var Charachter_Amount_Array = Charachter_Amount;
+  }
+  else {
+    null;
+  }
+  
 }
