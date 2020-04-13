@@ -1,34 +1,11 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-//Variables to store the array from the ASCII chart.
-
-  var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90)
-  var LOWERCASE_CHAR_CODE = arrayFromLowtoHigh(97, 122)
-  var NUMBER_CHAR_CODE = arrayFromLowtoHigh(48, 57)
-  var SPECIAL_CHAR_CODE = arrayFromLowtoHigh(33, 47).concat(arrayFromLowtoHigh(58, 64)).concat(arrayFromLowtoHigh(91, 96)).concat(arrayFromLowtoHigh(123, 126))
-
-
-
-//Write function to get characters from ASCII characters code table. It stores the total array that it will be broken down and specified in the above variables
-function arrayFromLowtoHigh(low, high) {
-  var array = []
-  for (var j = low; j <= high; j++) {
-    array.push(j)
-  }
-  return array
-}
-
-
 // Write password to the #password input
-
 function writePassword() {
   var password = generatePassword();
-
-  //Set up variables for our character codes
-
   var passwordText = document.querySelector("#password");
+  
   passwordText.value = password;
 }
 
@@ -67,3 +44,13 @@ for (var i = 0; i < question.length; i++) {
   
   {break;}
 };
+
+//Create variables to store the Arrays of the ASCII character table
+var UPPER_ARRAY = [...Array(26)].map((val, i) => String.fromCharCode(i+65));
+var LOWER_ARRAY = [...Array(26)].map((val, i) => String.fromCharCode(i+97));
+var NUMBER_ARRAY = [...Array(10)].map((val, i) => String.fromCharCode(i+48));
+var SYMBOLS1_ARRAY = [...Array(15)].map((val, i) => String.fromCharCode(i+33));
+var SYMBOLS2_ARRAY = [...Array(7)].map((val, i) => String.fromCharCode(i+58));
+var SYMBOLS3_ARRAY = [...Array(10)].map((val, i) => String.fromCharCode(i+91));
+var SYMBOLS_ARRAY = SYMBOLS1_ARRAY.concat(SYMBOLS2_ARRAY).concat(SYMBOLS3_ARRAY);
+console.log(SYMBOLS_ARRAY);
