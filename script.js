@@ -11,7 +11,7 @@ var generateBtn = document.querySelector("#generate");
 
 
 
-//Write function to get characters from ASCII characters code table
+//Write function to get characters from ASCII characters code table. It stores the total array that it will be broken down and specified in the above variables
 function arrayFromLowtoHigh(low, high) {
   var array = []
   for (var j = low; j <= high; j++) {
@@ -19,6 +19,7 @@ function arrayFromLowtoHigh(low, high) {
   }
   return array
 }
+
 
 // Write password to the #password input
 
@@ -64,37 +65,5 @@ for (var i = 0; i < question.length; i++) {
   var Numbers_L = Numbers.toLowerCase();
   var Symbols_L = Symbols.toLowerCase();
   
-
-  //Check answers to filter password criteria and assign a variable for positive answers and another for negatives
-  if (Uppercase_L === "yes") {
-    var Uppercase_Array = UPPERCASE_CHAR_CODES;
-  }
-  else {
-    null;
-  }
-  if (Lowercase_L === "yes") {
-    var Lowercase_Array = LOWERCASE_CHAR_CODE;
-  }
-  else {
-    null;
-  }
-  if (Numbers_L === "yes") {
-    var Numbers_Arrays = NUMBER_CHAR_CODE;
-  }
-  else {
-    null;
-  }
-  if (Symbols_L === "yes") {
-    var Symbols_Array = SPECIAL_CHAR_CODE;
-  }
-  else {
-    null;
-  }
-  if (Charachter_Amount >= 8 && Charachter_Amount <= 128) {
-    var Charachter_Amount_Array = Charachter_Amount;
-  }
-  else {
-    null;
-  }
-  
-}
+  {break;}
+};
