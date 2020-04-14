@@ -1,54 +1,103 @@
+//Create variables values to offer to the user
+var UPPER_ARRAY = ["A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var LOWER_ARRAY = ["a","b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var NUMBER_ARRAY = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var SYMBOLS_ARRAY = ["!", "~", "`", "@", "#", "$", "%", "^", "&", "*", "(", ")", "/", "{", "}", "[", "]", ";", ":", "?", "<", ">", ".", ",", "\"", "|"];
+
+//User input variables (we'll fill them with the input from the prompts)
+var Uppercase;
+var Lowercase;
+var Numbers;
+var Symbols;
+
+//Create variable to store user choices. It'll come in the conditions
+var UserChoices;
+
+//Create questions/prompts 
+
+var question = [
+  { q: "Would you like to include uppercase characters? Please answer 'yes' or 'no'."},
+  { q: "Would you like to include lowercase characters? Please answer 'yes' or 'no'."},
+  { q: "Would you like to include numeric characters? Please answer 'yes' or 'no'."},
+  { q: "Would you like to include special characters? Please answer 'yes' or 'no'."},
+  { q: "How many characters would you like your password to have? Please input a number between 8 and 128."}
+  ];
+
+// Start function to generatePassword
+function generatePassword() {
+  //Ask for user input
+  alert("Please answer the following questions regarding your password criteria.");
+  //ParseInt transforms the string of the prompt in a whole number
+  var Charachter_Amount = parseInt(prompt(question[4].q), 10);
+  //First validation. Make sure it inputs a value
+  while (!Charachter_Amount){
+    alert("please enter a value between 8 & 128");
+    var Charachter_Amount = parseInt(prompt(question[4].q), 10);
+  }
+  //Second validation. Make sure value fits the prompt
+  while (Charachter_Amount < 8 || Charachter_Amount > 128) {
+    alert("please enter a value between 8 & 128");
+    var Charachter_Amount = parseInt(prompt(question[4].q), 10);
+  };
+  if (Charachter_Amount >= 8 || Charachter_Amount <= 128) {
+    var Uppercase = prompt(question[0].q).toLowerCase();
+    var Lowercase = prompt(question[1].q).toLowerCase();
+    var Numbers = prompt(question[2].q).toLowerCase();
+    var Symbols = prompt(question[3].q).toLowerCase();
+  }
+
+  //Analized users input with conditionals to generate password. At this point we'll implement the UserChoices variable
+  //First validation
+  while (Uppercase !== "yes" || Uppercase !== "no") {
+    alert("You should choose 'yes' or 'no");
+    var Uppercase = prompt(question[0].q).toLowerCase();
+  };
+  if (Uppercase === "yes") {
+    var UserChoices = UPPER_ARRAY;
+  }
+  if (Uppercase === "yes" && Lowercase === "yes") {
+    var UserChoices = UPPER_ARRAY.concat(LOWER_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "yes") {
+    var UserChoices = LOWER_ARRAY;
+  }
+  if (Uppercase === "yes" && Lowercase === "yes" && Numbers === "yes") {
+    var UserChoices = UPPER_ARRAY.concat(LOWER_ARRAY, NUMBER_ARRAY);
+  } else if (Uppercase === "yes" && Lowercase === "no" && Numbers === "yes") {
+    var UserChoices = UPPER_ARRAY.concat(NUMBER_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "yes" && Numbers === "yes") {
+    var UserChoices = LOWER_ARRAY.concat(NUMBER_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "yes") {
+    var UserChoices = NUMBER_ARRAY;
+  }
+  if (Uppercase === "yes" && Lowercase === "yes" && Numbers === "yes" && Symbols === "yes") {
+    var UserChoices = UPPER_ARRAY.concat(LOWER_ARRAY, NUMBER_ARRAY, SYMBOLS_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "yes" && Numbers === "yes" && SYMBOLS_ARRAY === "yes") {
+    var UserChoices = LOWER_ARRAY.concat(NUMBER_ARRAY, SYMBOLS_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "yes" && Symbols === "yes") {
+    var UserChoices = NUMBER_ARRAY.concat(SYMBOLS_ARRAY);
+  } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "no" && Symbols === "yes") {
+    var UserChoices = SYMBOLS_ARRAY;
+  }
+
+
+
+};
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
   
-// Write password to the #password input
-function writePassword() {
+// Write password to the #password input. 
+function writePassword() {}
   
-  alert("Please answer the following questions regarding your password criteria.");
+//Give values to function generatePassword 
 
-  var question = [
-    { q: "Would you like to include uppercase characters? Please answer 'yes' or 'no'."},
-    { q: "Would you like to include lowercase characters? Please answer 'yes' or 'no'."},
-    { q: "Would you like to include numeric characters? Please answer 'yes' or 'no'."},
-    { q: "Would you like to include special characters? Please answer 'yes' or 'no'."},
-    { q: "How many characters would you like your password to have? Please input a number between 8 and 128."}
-  ];
+  
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
+  
+passwordText.value = password;
+  
 
-  //Loop over every question object
-    for (var i = 0; i < question.length; i++) {
-    //Display questions for user to answer and store their answer on the variables
-      var Uppercase = prompt(question[0].q);
-      var Lowercase = prompt(question[1].q);
-      var Numbers = prompt(question[2].q);
-      var Symbols = prompt(question[3].q);
-      var Charachter_Amount = prompt(question[4].q);
-
-    //convert userAnswer to Lowercase
-      var Uppercase_L = Uppercase.toLowerCase();
-      var Lowercase_L = Lowercase.toLowerCase();
-      var Numbers_L = Numbers.toLowerCase();
-      var Symbols_L = Symbols.toLowerCase();
-  
-    {break;}
-  };
-  
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  
-  passwordText.value = password;
-  
-};
 
 
 // Add event listener to generate button. Executes what it is inside the writePassword function above
 generateBtn.addEventListener("click", writePassword);
-
-//Create variables to store the Arrays of the ASCII character table
-var UPPER_ARRAY = [...Array(26)].map((val, i) => String.fromCharCode(i+65));
-var LOWER_ARRAY = [...Array(26)].map((val, i) => String.fromCharCode(i+97));
-var NUMBER_ARRAY = [...Array(10)].map((val, i) => String.fromCharCode(i+48));
-var SYMBOLS1_ARRAY = [...Array(15)].map((val, i) => String.fromCharCode(i+33));
-var SYMBOLS2_ARRAY = [...Array(7)].map((val, i) => String.fromCharCode(i+58));
-var SYMBOLS3_ARRAY = [...Array(10)].map((val, i) => String.fromCharCode(i+91));
-var SYMBOLS_ARRAY = SYMBOLS1_ARRAY.concat(SYMBOLS2_ARRAY).concat(SYMBOLS3_ARRAY);
-
