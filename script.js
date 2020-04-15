@@ -41,17 +41,33 @@ function generatePassword() {
   };
   if (Charachter_Amount >= 8 || Charachter_Amount <= 128) {
     var Uppercase = prompt(question[0].q).toLowerCase();
+    while (Uppercase !== "yes" && Uppercase !== "no") {
+      alert("You should choose 'yes' or 'no");
+      var Uppercase = prompt(question[0].q).toLowerCase();
+    };
+    
     var Lowercase = prompt(question[1].q).toLowerCase();
+    while (Lowercase !== "yes" && Lowercase !== "no") {
+      alert("You should choose 'yes' or 'no");
+      var Lowercase = prompt(question[1].q).toLowerCase();
+    };
+
     var Numbers = prompt(question[2].q).toLowerCase();
+    while (Numbers !== "yes" && Numbers !== "no") {
+      alert("You should choose 'yes' or 'no");
+      var Numbers = prompt(question[2].q).toLowerCase();
+    };
+
     var Symbols = prompt(question[3].q).toLowerCase();
+    while (Symbols !== "yes" && Symbols !== "no") {
+      alert("You should choose 'yes' or 'no");
+      var Symbols = prompt(question[3].q).toLowerCase();
+    };
   }
+  
 
   //Analized users input with conditionals to generate password. At this point we'll implement the UserChoices variable
-  //First validation
-  while (Uppercase !== "yes" || Uppercase !== "no") {
-    alert("You should choose 'yes' or 'no");
-    var Uppercase = prompt(question[0].q).toLowerCase();
-  };
+  //First validation --- NOT WORKING  
   if (Uppercase === "yes") {
     var UserChoices = UPPER_ARRAY;
   }
@@ -77,27 +93,34 @@ function generatePassword() {
     var UserChoices = NUMBER_ARRAY.concat(SYMBOLS_ARRAY);
   } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "no" && Symbols === "yes") {
     var UserChoices = SYMBOLS_ARRAY;
+  };
+  for (var i = 0; i < Charachter_Amount; i++ ) {
+    // Let's say character amount is 8
+    // Then we want to loop through UserChoices array and pick out random characters from UserChoices array
+    // The line below will pick out 8 random characters from the UserChoices array
+    var User_Picks = UserChoices[Math.floor(Math.random() * UserChoices.length)];
+
   }
-
-
-
-};
+  // return UserChoices as a string
+   return User_Picks;
+}
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
   
 // Write password to the #password input. 
-function writePassword() {}
-  
-//Give values to function generatePassword 
-
-  
+function writePassword() {
+  //Give values to function generatePassword 
+// generatePassword() is a function that returns a string in the end
+// For example, when you run generatePassword, what is returned is a string of randomly generated characters, aka the password
 var password = generatePassword();
+// First they have to store the DOM element into a variable, which they named passwordText
 var passwordText = document.querySelector("#password");
-  
+// Make the value of passwordText = password
 passwordText.value = password;
-  
-
-
+}
 
 // Add event listener to generate button. Executes what it is inside the writePassword function above
 generateBtn.addEventListener("click", writePassword);
+
+
+
