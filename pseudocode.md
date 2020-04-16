@@ -21,3 +21,6 @@
         - If user doesn't pick anything, prompt user to pick
 4. We apply conditions and generate the password
 5. We write the password
+
+
+

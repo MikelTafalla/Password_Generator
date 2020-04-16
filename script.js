@@ -67,7 +67,7 @@ function generatePassword() {
   
 
   //Analized users input with conditionals to generate password. At this point we'll implement the UserChoices variable
-  //First validation --- NOT WORKING  
+  
   if (Uppercase === "yes") {
     var UserChoices = UPPER_ARRAY;
   }
@@ -94,15 +94,20 @@ function generatePassword() {
   } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "no" && Symbols === "yes") {
     var UserChoices = SYMBOLS_ARRAY;
   };
+  // This empty array will be filled with the characters stored in the variable ps, so later we can make the array one whole string to display.
+  var Psfinale = [];  
   for (var i = 0; i < Charachter_Amount; i++ ) {
     // Let's say character amount is 8
     // Then we want to loop through UserChoices array and pick out random characters from UserChoices array
     // The line below will pick out 8 random characters from the UserChoices array
-    var User_Picks = UserChoices[Math.floor(Math.random() * UserChoices.length)];
-
+    var ps = UserChoices[Math.floor(Math.random() * UserChoices.length)];
+    // sends the information in ps to the empty array Psfinale
+    Psfinale.push(ps); 
   }
-  // return UserChoices as a string
-   return User_Picks;
+  // Stores the Psfinale as a string in the var FinalPassword
+  var FinalPassword = Psfinale.join(""); 
+  
+  return FinalPassword;
 }
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -121,6 +126,4 @@ passwordText.value = password;
 
 // Add event listener to generate button. Executes what it is inside the writePassword function above
 generateBtn.addEventListener("click", writePassword);
-
-
 
