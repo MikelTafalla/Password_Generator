@@ -34,7 +34,7 @@ function generatePassword() {
     alert("please enter a value between 8 & 128");
     var Charachter_Amount = parseInt(prompt(question[4].q), 10);
   }
-  //Second validation. Make sure value fits the prompt
+  //Second and rest of validations. Make sure value fits the prompt
   while (Charachter_Amount < 8 || Charachter_Amount > 128) {
     alert("please enter a value between 8 & 128");
     var Charachter_Amount = parseInt(prompt(question[4].q), 10);
@@ -87,7 +87,7 @@ function generatePassword() {
   }
   if (Uppercase === "yes" && Lowercase === "yes" && Numbers === "yes" && Symbols === "yes") {
     var UserChoices = UPPER_ARRAY.concat(LOWER_ARRAY, NUMBER_ARRAY, SYMBOLS_ARRAY);
-  } else if (Uppercase === "no" && Lowercase === "yes" && Numbers === "yes" && SYMBOLS_ARRAY === "yes") {
+  } else if (Uppercase === "no" && Lowercase === "yes" && Numbers === "yes" && Symbols === "yes") {
     var UserChoices = LOWER_ARRAY.concat(NUMBER_ARRAY, SYMBOLS_ARRAY);
   } else if (Uppercase === "no" && Lowercase === "no" && Numbers === "yes" && Symbols === "yes") {
     var UserChoices = NUMBER_ARRAY.concat(SYMBOLS_ARRAY);
@@ -95,8 +95,10 @@ function generatePassword() {
     var UserChoices = SYMBOLS_ARRAY;
   };
   // This empty array will be filled with the characters stored in the variable ps, so later we can make the array one whole string to display.
-  var Psfinale = [];  
-  for (var i = 0; i < Charachter_Amount; i++ ) {
+  var Psfinale = [];
+  // Out of 50 something characters, you're pulling 8 of them, randomly
+  // Math.floor(Math.random() * UserChoices.length) gives you a random number between 0 and UserChoices.length
+  for (var i = 0; i < Charachter_Amount; i++) {
     // Let's say character amount is 8
     // Then we want to loop through UserChoices array and pick out random characters from UserChoices array
     // The line below will pick out 8 random characters from the UserChoices array
@@ -106,7 +108,7 @@ function generatePassword() {
   }
   // Stores the Psfinale as a string in the var FinalPassword
   var FinalPassword = Psfinale.join(""); 
-  
+
   return FinalPassword;
 }
 // Assignment Code
